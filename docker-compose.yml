@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  streamer:
+    image: local/gstreamer
+    build: .
+    volumes:
+      - ./hls:/root/hls
+  web:
+    image: httpd:latest
+    volumes: 
+      - ./hls:/usr/local/apache2/htdocs/
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - "8080:80"
