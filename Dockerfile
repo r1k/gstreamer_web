@@ -1,6 +1,6 @@
 FROM restreamio/gstreamer:latest-prod
 
-RUN apt update && apt install -y net-tools iproute2 python3 supervisor && \
+RUN apt update && apt install -y net-tools iproute2 supervisor && \
     mkdir -p /var/log/supervisor && \
     mkdir -p /etc/supervisor/conf.d && \
     mkdir -p /root/hls
