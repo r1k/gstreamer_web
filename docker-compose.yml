@@ -5,6 +5,11 @@ services:
     build: .
     volumes:
       - ./hls:/root/hls
+    network_mode: "host"
+    environment: 
+      - SRC_UDP=239.59.63.1:5000
+      - ROOT_URL=http://localhost.local:8080
+      - MCAST_IFACE=enp2s0
   web:
     image: httpd:latest
     volumes: 
