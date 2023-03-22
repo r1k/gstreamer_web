@@ -1,4 +1,4 @@
-FROM restreamio/gstreamer:latest-prod
+FROM restreamio/gstreamer:x86-64-latest-prod
 
 RUN apt update && apt install -y net-tools iproute2 supervisor && \
     mkdir -p /var/log/supervisor && \
@@ -8,7 +8,5 @@ RUN apt update && apt install -y net-tools iproute2 supervisor && \
 WORKDIR /root/hls
 
 ADD service_script.conf /etc/supervisor/conf.d/service_script.conf
-
-EXPOSE 8080
 
 CMD ["supervisord","-c","/etc/supervisor/conf.d/service_script.conf"]

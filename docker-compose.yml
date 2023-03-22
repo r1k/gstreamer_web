@@ -2,18 +2,18 @@ version: "3.9"
 services:
   streamer:
     image: local/gstreamer
-    build: .
+    build: docker_gstreamer_image/.
     volumes:
       - ./hls:/root/hls
     network_mode: "host"
     environment: 
-      - SRC_UDP=239.59.63.1:5000
-      - ROOT_URL=http://localhost.local:8080
-      - MCAST_IFACE=enp2s0
+      - SRC_UDP=239.9.123.4:5000
+      - ROOT_URL=http://10.32.8.11:12080
+      - MCAST_IFACE=eno2
   web:
     image: httpd:latest
     volumes: 
-      - ./hls:/usr/local/apache2/htdocs/
-      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./hls/web:/usr/local/apache2/htdocs/
+      - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
     ports:
-      - "8080:80"
+      - "12080:80"
